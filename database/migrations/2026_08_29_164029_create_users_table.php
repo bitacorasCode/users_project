@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Enums\UserState;
 
 return new class extends Migration {
     /**
@@ -25,7 +26,14 @@ return new class extends Migration {
                 ->constrained('roles')
                 ->restrictOnDelete();
 
-            $table->string('state');
+
+            $table->enum(
+                'state',
+                array_column(UserState::cases(), 'value')
+            );
+
+            $table->string('password', 10);
+            $table->rememberToken();
 
             $table->timestamps();
         });
