@@ -29,7 +29,7 @@ return new class extends Migration {
                 array_column(UserState::cases(), 'value')
             );
 
-            $table->string('password', 10);
+            $table->string('password');
             $table->rememberToken();
 
             $table->timestamps();

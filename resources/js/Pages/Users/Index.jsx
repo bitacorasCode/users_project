@@ -7,7 +7,7 @@ export default function Index({ users }) {
 
             <h1>Usuarios</h1>
 
-            {users.map((user) => (
+            {users.data.map((user) => (
                 <div key={user.id}>
                     {user.name} {user.last_name}
                 </div>

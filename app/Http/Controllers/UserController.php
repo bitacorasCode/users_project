@@ -2,20 +2,64 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserState;
 use App\Http\Requests\StoreUserRequest;
+use App\Models\Role;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::with('role')->get();
+        $query = User::with('role');
+
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+
+            $query->where(function ($query) use ($search) {
+                $query->where('name', 'ILIKE', "%{$search}%")
+                    ->orWhere('last_name', 'ILIKE', "%{$search}%")
+                    ->orWhere('email', 'ILIKE', "%{$search}%")
+                    ->orWhere('rut', 'ILIKE', "%{$search}%")
+                    ->orWhere('phone', 'ILIKE', "%{$search}%");
+            });
+        }
+
+        if ($request->filled('role_id')) {
+            $query->where('role_id', $request->input('role_id'));
+        }
+
+        if ($request->filled('state')) {
+            $query->where('state', $request->input('state'));
+        }
+
+        $users = $query
+            ->orderBy('created_at', 'desc')
+            ->paginate(10)
+            ->withQueryString();
 
         return Inertia::render('Users/Index', [
             'users' => $users,
         ]);
+    }
+
+    public function roles()
+    {
+        return response()->json(
+            Role::select('id', 'name')
+                ->orderBy('name')
+                ->get()
+        );
+    }
+
+    public function states()
+    {
+        return response()->json(
+            UserState::options()
+        );
     }
 
     public function address(User $user)
@@ -32,10 +76,14 @@ class UserController extends Controller
         );
     }
 
+    public function create()
+    {
+        return Inertia::render('Users/Create');
+    }
+
     public function store(StoreUserRequest $request)
     {
         return DB::transaction(function () use ($request) {
-
             $data = $request->validated();
 
             $user = User::create([
