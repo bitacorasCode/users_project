@@ -152,12 +152,29 @@ class UserController extends Controller
         });
     }
 
-    public function destroy(User $user)
+    public function destroy(int $id)
     {
-        $user->delete();
+        try {
+            $user = User::find($id);
 
-        return redirect()
-            ->route('users.index')
-            ->with('success', 'Usuario eliminado correctamente.');
+            if (!$user) {
+                return back()->withErrors([
+                    'deleteUser' => 'El usuario ya no existe o fue eliminado previamente.',
+                ]);
+            }
+
+            $user->delete();
+
+            return redirect()
+                ->route('users.index')
+                ->with('success', 'Usuario eliminado correctamente.');
+
+        } catch (\Throwable $exception) {
+            report($exception);
+
+            return back()->withErrors([
+                'deleteUser' => 'No se pudo eliminar el usuario. Inténtalo nuevamente.',
+            ]);
+        }
     }
 }

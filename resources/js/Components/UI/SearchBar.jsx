@@ -1,4 +1,4 @@
-import { Form } from "react-bootstrap";
+import { Form, InputGroup } from "react-bootstrap";
 
 export default function SearchBar({
     value,
@@ -6,11 +6,16 @@ export default function SearchBar({
     placeholder = "Buscar...",
 }) {
     return (
-        <Form.Control
-            type="search"
-            value={value}
-            placeholder={placeholder}
-            onChange={(event) => onChange(event.target.value)}
-        />
+        <InputGroup>
+            <InputGroup.Text>🔍</InputGroup.Text>
+
+            <Form.Control
+                type="search"
+                value={value}
+                onChange={(event) => onChange(event.target.value)}
+                placeholder={placeholder}
+                aria-label={placeholder}
+            />
+        </InputGroup>
     );
 }

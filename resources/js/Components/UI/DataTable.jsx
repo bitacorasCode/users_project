@@ -3,7 +3,12 @@ import DT from "datatables.net-bs5";
 
 DataTableLibrary.use(DT);
 
-export default function DataTable({ data = [], columns = [], options = {} }) {
+export default function DataTable({
+    data = [],
+    columns = [],
+    options = {},
+    slots = {},
+}) {
     const defaultOptions = {
         paging: false,
         searching: false,
@@ -15,6 +20,7 @@ export default function DataTable({ data = [], columns = [], options = {} }) {
         <DataTableLibrary
             data={data}
             columns={columns}
+            slots={slots}
             className="table table-striped table-hover"
             options={{
                 ...defaultOptions,

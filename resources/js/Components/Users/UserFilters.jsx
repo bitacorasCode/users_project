@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { Spinner } from "react-bootstrap";
-import { router } from "@inertiajs/react";
 
 import FilterPanel from "../UI/FilterPanel";
 import SelectField from "../UI/SelectField";
 import { getRoles, getUserStates } from "../../Services/catalogService";
 
-export default function UserFilters({ filters }) {
+export default function UserFilters({ filters, onApply }) {
     const [roles, setRoles] = useState([]);
     const [states, setStates] = useState([]);
 
@@ -16,40 +15,12 @@ export default function UserFilters({ filters }) {
     const [loading, setLoading] = useState(false);
 
     const handleApplyFilters = () => {
-        const newFilters = getFilterOptions();
-
-        router.get(
-            "/users",
-            {
-                ...newFilters,
-                page: 1,
-            },
-            {
-                preserveState: true,
-                preserveScroll: true,
-            },
-        );
+        onApply({ role, state });
     };
 
     const handleClearFilters = () => {
         setRole("");
         setState("");
-    };
-
-    const getFilterOptions = () => {
-        const filterOptions = {};
-
-        if (role) {
-            filterOptions.role = roles.find((r) => r.value === role)?.label;
-        }
-        if (state) {
-            filterOptions.state = states.find((s) => s.value === state)?.label;
-        }
-        if (filters.search) {
-            filterOptions.search = filters.search;
-        }
-
-        return filterOptions;
     };
 
     const loadOptions = async () => {

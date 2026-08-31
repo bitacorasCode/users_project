@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::factory()
-            ->count(15)
+            ->count(100)
             ->has(Address::factory(), 'address')
             ->has(Note::factory()->count(2), 'notes')
             ->create();

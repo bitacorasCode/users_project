@@ -4,8 +4,12 @@ import { Button } from "react-bootstrap";
 import SearchBar from "../../Components/UI/SearchBar";
 import UserTable from "../../Components/Users/UserTable";
 import UserFilters from "../../Components/Users/UserFilters";
+import useUsersParams from "../../Hooks/Users/useUsersParams";
 
 export default function Index({ users, filters }) {
+    const { search, setSearch, applyFilters, changePage } =
+        useUsersParams(filters);
+
     return (
         <>
             <Head title="Usuarios" />
@@ -29,15 +33,20 @@ export default function Index({ users, filters }) {
                     <div className="card-body">
                         <div className="row mb-3">
                             <div className="col-md-6">
-                                <SearchBar placeholder="Buscar usuarios..." />
+                                <SearchBar
+                                    value={search}
+                                    onChange={setSearch}
+                                    placeholder="Buscar usuarios..."
+                                />
                             </div>
-
                             <div className="col-md-6 d-flex justify-content-end">
-                                <UserFilters filters={filters} />
+                                <UserFilters
+                                    filters={filters}
+                                    onApply={applyFilters}
+                                />
                             </div>
                         </div>
-
-                        <UserTable users={users} />
+                        <UserTable users={users} onPageChange={changePage} />
                     </div>
                 </div>
             </div>
