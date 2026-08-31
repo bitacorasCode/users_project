@@ -28,19 +28,29 @@ class UserController extends Controller
             });
         }
 
-        if ($request->filled('role_id')) {
-            $query->where('role_id', $request->input('role_id'));
+        if ($request->filled('role')) {
+            $query->whereHas('role', function ($query) use ($request) {
+                $query->where('name', $request->input('role'));
+            });
         }
 
         if ($request->filled('state')) {
-            $query->where('state', $request->input('state'));
+            $state = collect(UserState::cases())
+                ->first(
+                    fn(UserState $state) =>
+                    $state->label() === $request->input('state')
+                );
+
+            if ($state) {
+                $query->where('state', $state->value);
+            }
         }
 
         $users = $query
             ->orderBy('created_at', 'desc')
             ->paginate(10)
             ->withQueryString()
-            ->through(fn ($user) => [
+            ->through(fn($user) => [
                 'id' => $user->id,
                 'name' => $user->name,
                 'last_name' => $user->last_name,
@@ -64,6 +74,11 @@ class UserController extends Controller
 
         return Inertia::render('Users/Index', [
             'users' => $users,
+            'filters' => [
+                'search' => $request->input('search', ''),
+                'role' => $request->input('role'),
+                'state' => $request->input('state'),
+            ],
         ]);
     }
 

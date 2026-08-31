@@ -3,8 +3,9 @@ import { Button } from "react-bootstrap";
 
 import SearchBar from "../../Components/UI/SearchBar";
 import UserTable from "../../Components/Users/UserTable";
+import UserFilters from "../../Components/Users/UserFilters";
 
-export default function Index({ users }) {
+export default function Index({ users, filters }) {
     return (
         <>
             <Head title="Usuarios" />
@@ -29,6 +30,10 @@ export default function Index({ users }) {
                         <div className="row mb-3">
                             <div className="col-md-6">
                                 <SearchBar placeholder="Buscar usuarios..." />
+                            </div>
+
+                            <div className="col-md-6 d-flex justify-content-end">
+                                <UserFilters filters={filters} />
                             </div>
                         </div>
 
