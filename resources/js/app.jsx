@@ -2,6 +2,9 @@ import { createRoot } from "react-dom/client";
 import { createInertiaApp } from "@inertiajs/react";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
+
 createInertiaApp({
     resolve: (name) =>
         resolvePageComponent(

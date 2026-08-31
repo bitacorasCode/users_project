@@ -10,8 +10,8 @@ enum UserState: int
     public function label(): string
     {
         return match ($this) {
-            self::INACTIVE => 'Inactive',
-            self::ACTIVE => 'Active',
+            self::INACTIVE => 'Inactivo',
+            self::ACTIVE => 'Activo',
         };
     }
 

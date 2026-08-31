@@ -39,7 +39,28 @@ class UserController extends Controller
         $users = $query
             ->orderBy('created_at', 'desc')
             ->paginate(10)
-            ->withQueryString();
+            ->withQueryString()
+            ->through(fn ($user) => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'last_name' => $user->last_name,
+                'email' => $user->email,
+                'rut' => $user->rut,
+                'phone' => $user->phone,
+
+                'state' => [
+                    'value' => $user->state->value,
+                    'label' => $user->state->label(),
+                ],
+
+                'role' => [
+                    'id' => $user->role->id,
+                    'name' => $user->role->name,
+                ],
+
+                'created_at' => $user->created_at,
+                'updated_at' => $user->updated_at,
+            ]);
 
         return Inertia::render('Users/Index', [
             'users' => $users,
