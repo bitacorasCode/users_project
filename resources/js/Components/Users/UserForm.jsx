@@ -3,9 +3,7 @@ import { router } from "@inertiajs/react";
 import { useForm } from "laravel-precognition-react-inertia";
 import { Alert, Button, Spinner } from "react-bootstrap";
 
-import PersonalDataSection from "./Form/PersonalDataSection";
-import AddressSection from "./Form/AddressSection";
-import NotesSection from "./Form/NotesSection";
+import { PersonalDataSection, AddressSection, NotesSection } from "./Form";
 
 import { getRoles, getUserStates } from "../../Services/catalogService";
 

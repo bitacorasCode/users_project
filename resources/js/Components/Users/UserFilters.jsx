@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Spinner } from "react-bootstrap";
 
-import FilterPanel from "../UI/FilterPanel";
-import SelectField from "../UI/SelectField";
+import { FilterPanel, SelectField } from "../UI";
 import { getRoles, getUserStates } from "../../Services/catalogService";
 
 export default function UserFilters({ filters, onApply }) {

@@ -1,7 +1,6 @@
 import { Button } from "react-bootstrap";
-import DataTable from "../UI/DataTable";
-import Pagination from "../UI/Pagination";
-import DeleteAction from "../Actions/DeleteAction";
+import { DataTable, Pagination } from "../UI";
+import { DeleteAction } from "../Actions";
 
 const columns = [
     {

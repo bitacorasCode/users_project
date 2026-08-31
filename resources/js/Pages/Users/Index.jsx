@@ -1,11 +1,9 @@
 import { Head, Link } from "@inertiajs/react";
 import { Button } from "react-bootstrap";
 
-import SearchBar from "../../Components/UI/SearchBar";
-import FlashToast from "../../Components/UI/FlashToast";
-import UserTable from "../../Components/Users/UserTable";
-import UserFilters from "../../Components/Users/UserFilters";
-import useUsersParams from "../../Hooks/Users/useUsersParams";
+import { SearchBar, FlashToast } from "../../Components/UI";
+import { UserTable, UserFilters } from "../../Components/Users";
+import { useUsersParams } from "../../Hooks";
 
 export default function Index({ users, filters }) {
     const { search, setSearch, applyFilters, changePage } =
@@ -27,8 +25,8 @@ export default function Index({ users, filters }) {
                         </p>
                     </div>
 
-                    <Link href="/users/create">
-                        <Button variant="primary">Crear usuario</Button>
+                    <Link href="/users/create" className="btn btn-primary">
+                        Crear usuario
                     </Link>
                 </div>
 
