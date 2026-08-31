@@ -148,7 +148,11 @@ class UserController extends Controller
 
             return redirect()
                 ->route('users.index')
-                ->with('success', 'Usuario creado correctamente.');
+                ->with([
+                    'flash.type' => 'success',
+                    'flash.title' => 'Éxito',
+                    'flash.message' => 'Usuario creado correctamente.',
+                ]);
         });
     }
 
@@ -167,8 +171,11 @@ class UserController extends Controller
 
             return redirect()
                 ->route('users.index')
-                ->with('success', 'Usuario eliminado correctamente.');
-
+                ->with([
+                    'flash.type' => 'success',
+                    'flash.title' => 'Éxito',
+                    'flash.message' => 'Usuario eliminado correctamente.',
+                ]);
         } catch (\Throwable $exception) {
             report($exception);
 

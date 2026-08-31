@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests;
 
 // GET Routes
 Route::get('/users', [UserController::class, 'index'])
@@ -24,6 +25,7 @@ Route::get('/roles', [UserController::class, 'roles'])
 
 // POST Routes
 Route::post('/users', [UserController::class, 'store'])
+    ->middleware([HandlePrecognitiveRequests::class])
     ->name('users.store');
 
 // DELETE Routes

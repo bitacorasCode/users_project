@@ -2,6 +2,7 @@ import { Head, Link } from "@inertiajs/react";
 import { Button } from "react-bootstrap";
 
 import SearchBar from "../../Components/UI/SearchBar";
+import FlashToast from "../../Components/UI/FlashToast";
 import UserTable from "../../Components/Users/UserTable";
 import UserFilters from "../../Components/Users/UserFilters";
 import useUsersParams from "../../Hooks/Users/useUsersParams";
@@ -13,6 +14,8 @@ export default function Index({ users, filters }) {
     return (
         <>
             <Head title="Usuarios" />
+
+            <FlashToast />
 
             <div className="container py-4">
                 <div className="d-flex justify-content-between align-items-center mb-4">

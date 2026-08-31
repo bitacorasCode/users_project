@@ -17,12 +17,6 @@ class User extends Authenticatable
         'phone',
         'role_id',
         'state',
-        'password',
-    ];
-
-    protected $hidden = [
-        'password',
-        'remember_token',
     ];
 
     protected $casts = [

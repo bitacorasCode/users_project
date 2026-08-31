@@ -106,4 +106,14 @@ class StoreUserRequest extends FormRequest
             ],
         ];
     }
+
+    public function attributes(): array
+    {
+        return [
+            'address.street' => 'street',
+            'address.city' => 'city',
+            'address.zip_code' => 'zip code',
+            'notes.*.note' => 'note',
+        ];
+    }
 }
