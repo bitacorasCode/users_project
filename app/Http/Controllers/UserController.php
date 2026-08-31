@@ -98,18 +98,50 @@ class UserController extends Controller
         );
     }
 
-    public function address(User $user)
+    public function detail(User $user)
     {
-        return response()->json(
-            $user->address
-        );
-    }
+        $user->load('role');
 
-    public function notes(User $user)
-    {
-        return response()->json(
-            $user->notes()->get()
-        );
+        return Inertia::render('Users/Detail', [
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'last_name' => $user->last_name,
+                'email' => $user->email,
+                'role' => $user->role?->name,
+                'state' => $user->state
+                    ? 'Activo'
+                    : 'Inactivo',
+            ],
+
+            'general' => Inertia::optional(function () use ($user) {
+                $user->load('role');
+
+                return [
+                    'name' => $user->name,
+                    'last_name' => $user->last_name,
+                    'email' => $user->email,
+                    'rut' => $user->rut,
+                    'phone' => $user->phone,
+                    'role' => $user->role?->name,
+                    'state' => $user->state
+                        ? 'Activo'
+                        : 'Inactivo',
+                    'created_at' => $user->created_at,
+                ];
+            }),
+
+            'address' => Inertia::optional(
+                fn() => $user->address
+            ),
+
+            'notes' => Inertia::optional(
+                fn() => $user->notes()
+                    ->select('id', 'note', 'created_at')
+                    ->orderBy('created_at', 'desc')
+                    ->get()
+            ),
+        ]);
     }
 
     public function create()

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { router } from "@inertiajs/react";
 import { useForm } from "laravel-precognition-react-inertia";
-import { Alert, Button, Spinner } from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 
 import { PersonalDataSection, AddressSection, NotesSection } from "./Form";
 
 import { getRoles, getUserStates } from "../../Services/catalogService";
+import { Loader } from "../UI";
 
 const initialData = {
     name: "",
@@ -69,11 +70,7 @@ export default function UserForm() {
     if (loadingOptions) {
         return (
             <div className="d-flex justify-content-center py-5">
-                <Spinner animation="border" role="status">
-                    <span className="visually-hidden">
-                        Cargando formulario...
-                    </span>
-                </Spinner>
+                <Loader message="Cargando opciones del formulario..." />
             </div>
         );
     }

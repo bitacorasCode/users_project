@@ -5,4 +5,4 @@ export { default as FlashToast } from "./FlashToast";
 export { default as Pagination } from "./Pagination";
 export { default as SearchBar } from "./SearchBar";
 export { default as SelectField } from "./SelectField";
-export { default as Skeleton } from "./Skeleton";
+export { default as Loader } from "./Loader";

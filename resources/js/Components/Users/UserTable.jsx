@@ -1,6 +1,7 @@
 import { Button } from "react-bootstrap";
 import { DataTable, Pagination } from "../UI";
-import { DeleteAction } from "../Actions";
+import { DeleteAction } from "../Helpers";
+import { Link } from "@inertiajs/react";
 
 const columns = [
     {
@@ -31,17 +32,16 @@ const columns = [
     { title: "Acciones", name: "actions" },
 ];
 
-export default function UserTable({ users, onPageChange, onViewDetail }) {
+export default function UserTable({ users, onPageChange }) {
     const slots = {
         actions: (_, user) => (
             <div className="d-flex gap-2">
-                <Button
-                    variant="outline-primary"
-                    size="sm"
-                    onClick={() => onViewDetail?.(user)}
+                <Link
+                    className="btn btn-outline-primary"
+                    href={`/users/${user.id}`}
                 >
                     Ver detalle
-                </Button>
+                </Link>
 
                 <DeleteAction
                     resource={user}

@@ -8,12 +8,6 @@ use Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests;
 Route::get('/users', [UserController::class, 'index'])
     ->name('users.index');
 
-Route::get('/users/{user}/address', [UserController::class, 'address'])
-    ->name('users.address');
-
-Route::get('/users/{user}/notes', [UserController::class, 'notes'])
-    ->name('users.notes');
-
 Route::get('/users/create', [UserController::class, 'create'])
     ->name('users.create');
 
@@ -22,6 +16,9 @@ Route::get('/user-states', [UserController::class, 'states'])
 
 Route::get('/roles', [UserController::class, 'roles'])
     ->name('roles.index');
+
+Route::get('/users/{user}', [UserController::class, 'detail'])
+    ->name('users.detail');
 
 // POST Routes
 Route::post('/users', [UserController::class, 'store'])

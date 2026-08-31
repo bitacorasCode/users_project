@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { Spinner } from "react-bootstrap";
 
-import { FilterPanel, SelectField } from "../UI";
+import { FilterPanel, Loader, SelectField } from "../UI";
 import { getRoles, getUserStates } from "../../Services/catalogService";
 
 export default function UserFilters({ filters, onApply }) {
@@ -59,11 +58,7 @@ export default function UserFilters({ filters, onApply }) {
         >
             {loading ? (
                 <div className="d-flex justify-content-center align-items-center py-5">
-                    <Spinner animation="border" role="status">
-                        <span className="visually-hidden">
-                            Cargando filtros...
-                        </span>
-                    </Spinner>
+                    <Loader message="Cargando filtros..." />
                 </div>
             ) : (
                 <>
