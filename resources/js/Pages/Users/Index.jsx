@@ -1,5 +1,4 @@
 import { Head, Link } from "@inertiajs/react";
-import { Button } from "react-bootstrap";
 
 import { SearchBar, FlashToast } from "../../Components/UI";
 import { UserTable, UserFilters } from "../../Components/Users";

@@ -1,6 +1,6 @@
 import { Col, Row } from "react-bootstrap";
 
-import { AsyncContent } from "../../Helpers";
+import { AsyncContent } from "../../Common";
 import { useLazyInertiaProp } from "../../../Hooks";
 
 export default function UserAddressTab({ active, data }) {

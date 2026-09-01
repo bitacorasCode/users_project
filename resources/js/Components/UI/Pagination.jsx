@@ -31,7 +31,7 @@ export default function Pagination({
     }
 
     return (
-        <div className="d-flex justify-content-between align-items-center mt-3">
+        <div className="d-flex justify-content-between align-items-center">
             <div className="text-muted">
                 Mostrando {from}–{to} de {total} {itemLabel}
             </div>

@@ -1,7 +1,7 @@
 import { Table } from "react-bootstrap";
 
 import { useLazyInertiaProp } from "../../../Hooks";
-import { AsyncContent } from "../../Helpers";
+import { AsyncContent } from "../../Common";
 
 export default function UserNotesTab({ active, data }) {
     const { loading, loaded, error } = useLazyInertiaProp({

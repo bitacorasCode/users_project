@@ -1,7 +1,8 @@
 import { Col, Row } from "react-bootstrap";
 
 import { useLazyInertiaProp } from "../../../Hooks";
-import { AsyncContent } from "../../Helpers";
+import { AsyncContent } from "../../Common";
+import { formatDate } from "../../../Helpers";
 
 export default function UserGeneralTab({ active, data }) {
     const { loading, loaded, error } = useLazyInertiaProp({
@@ -19,9 +20,7 @@ export default function UserGeneralTab({ active, data }) {
         { label: "Estado", value: data?.state },
         {
             label: "Fecha de creación",
-            value: data?.created_at
-                ? new Date(data.created_at).toLocaleDateString()
-                : null,
+            value: formatDate(data?.created_at),
         },
     ];
 

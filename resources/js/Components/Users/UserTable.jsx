@@ -1,7 +1,10 @@
-import { Button } from "react-bootstrap";
-import { DataTable, Pagination } from "../UI";
-import { DeleteAction } from "../Helpers";
 import { Link } from "@inertiajs/react";
+
+import { DeleteAction } from "../Common";
+import { DataTable, Pagination } from "../UI";
+import { formatDate } from "../../Helpers";
+
+import "../../../css/app.css";
 
 const columns = [
     {
@@ -27,7 +30,8 @@ const columns = [
     },
     {
         title: "Fecha creación",
-        data: "created_at",
+        data: "null",
+        render: (_, type, row) => formatDate(row.created_at),
     },
     { title: "Acciones", name: "actions" },
 ];
@@ -55,18 +59,22 @@ export default function UserTable({ users, onPageChange }) {
     };
 
     return (
-        <>
-            <DataTable data={users.data} columns={columns} slots={slots} />
+        <div className="table-layout-sticky">
+            <div className="table-scroll-sticky">
+                <DataTable data={users.data} columns={columns} slots={slots} />
+            </div>
 
-            <Pagination
-                currentPage={users.current_page}
-                lastPage={users.last_page}
-                from={users.from}
-                to={users.to}
-                total={users.total}
-                onPageChange={onPageChange}
-                label="usuarios"
-            />
-        </>
+            <div className="table-pagination-sticky">
+                <Pagination
+                    currentPage={users.current_page}
+                    lastPage={users.last_page}
+                    from={users.from}
+                    to={users.to}
+                    total={users.total}
+                    onPageChange={onPageChange}
+                    label="usuarios"
+                />
+            </div>
+        </div>
     );
 }
