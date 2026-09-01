@@ -2,9 +2,11 @@ import { Head, Link } from "@inertiajs/react";
 import { Badge, Button, Tab, Tabs } from "react-bootstrap";
 import { useState } from "react";
 
-import UserGeneralTab from "../../Components/Users/Tabs/UserGeneralTab";
-import UserAddressTab from "../../Components/Users/Tabs/UserAddressTab";
-import UserNotesTab from "../../Components/Users/Tabs/UserNotesTab";
+import {
+    UserGeneralTab,
+    UserAddressTab,
+    UserNotesTab,
+} from "../../Components/Users/Tabs";
 
 export default function Detail({ user, general, address, notes }) {
     const [activeTab, setActiveTab] = useState("general");
