@@ -1,8 +1,8 @@
 import { Link } from "@inertiajs/react";
 
+import { formatDate } from "../../Helpers";
 import { DeleteAction } from "../Common";
 import { DataTable, Pagination } from "../UI";
-import { formatDate } from "../../Helpers";
 
 import "../../../css/app.css";
 
@@ -33,7 +33,11 @@ const columns = [
         data: "null",
         render: (_, type, row) => formatDate(row.created_at),
     },
-    { title: "Acciones", name: "actions" },
+    {
+        title: "Acciones",
+        name: "actions",
+        width: "160px",
+    },
 ];
 
 export default function UserTable({ users, onPageChange }) {
@@ -41,10 +45,10 @@ export default function UserTable({ users, onPageChange }) {
         actions: (_, user) => (
             <div className="d-flex gap-2">
                 <Link
-                    className="btn btn-outline-primary"
+                    className="btn btn-sm btn-outline-primary"
                     href={`/users/${user.id}`}
                 >
-                    Ver detalle
+                    Detalle
                 </Link>
 
                 <DeleteAction
@@ -60,7 +64,7 @@ export default function UserTable({ users, onPageChange }) {
 
     return (
         <div className="table-layout-sticky">
-            <div className="table-scroll-sticky">
+            <div className="table-scroll-sticky table-fix-row-size">
                 <DataTable data={users.data} columns={columns} slots={slots} />
             </div>
 

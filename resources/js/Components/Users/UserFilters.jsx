@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { FilterPanel, Loader, SelectField } from "../UI";
 import { getRoles, getUserStates } from "../../Services/catalogService";
+import { FilterPanel, Loader, SelectField } from "../UI";
 
 export default function UserFilters({ filters, onApply }) {
     const [roles, setRoles] = useState([]);

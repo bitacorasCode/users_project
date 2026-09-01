@@ -4,19 +4,16 @@
     height: calc(100vh - 300px);
     min-height: 400px;
 }
-
 .table-scroll-sticky {
     flex: 1;
     overflow: auto;
 }
-
 .table-scroll-sticky thead th {
     position: sticky;
     top: 0;
     z-index: 10;
     background: var(--bs-body-bg);
 }
-
 .table-pagination-sticky {
     position: sticky;
     bottom: 0;
@@ -24,4 +21,8 @@
     background: var(--bs-body-bg);
     padding-top: 1rem;
     border-top: 1px solid var(--bs-border-color);
+}
+
+.table-fix-row-size tbody tr {
+    height: 48px;
 }

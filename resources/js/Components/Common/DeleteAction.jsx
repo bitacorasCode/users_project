@@ -1,8 +1,8 @@
-import { Button } from "react-bootstrap";
 import { router } from "@inertiajs/react";
 import { useState } from "react";
+import { Button } from "react-bootstrap";
 
-import ConfirmModal from "../UI/ConfirmModal";
+import { ConfirmModal } from "../UI";
 
 export default function DeleteAction({
     resource,

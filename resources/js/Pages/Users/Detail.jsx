@@ -1,10 +1,10 @@
 import { Head, Link } from "@inertiajs/react";
-import { Badge, Button, Tab, Tabs } from "react-bootstrap";
 import { useState } from "react";
+import { Badge, Button, Tab, Tabs } from "react-bootstrap";
 
 import {
-    UserGeneralTab,
     UserAddressTab,
+    UserGeneralTab,
     UserNotesTab,
 } from "../../Components/Users/Tabs";
 

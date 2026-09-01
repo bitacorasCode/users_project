@@ -1,8 +1,8 @@
 import { Col, Row } from "react-bootstrap";
 
+import { formatDate } from "../../../Helpers";
 import { useLazyInertiaProp } from "../../../Hooks";
 import { AsyncContent } from "../../Common";
-import { formatDate } from "../../../Helpers";
 
 export default function UserGeneralTab({ active, data }) {
     const { loading, loaded, error } = useLazyInertiaProp({
