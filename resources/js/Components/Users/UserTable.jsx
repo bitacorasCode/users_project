@@ -4,8 +4,6 @@ import { formatDate } from "../../Helpers";
 import { DeleteAction } from "../Common";
 import { DataTable, Pagination } from "../UI";
 
-import "../../../css/app.css";
-
 const columns = [
     {
         title: "Nombre completo",
@@ -30,7 +28,6 @@ const columns = [
     },
     {
         title: "Fecha creación",
-        data: "null",
         render: (_, type, row) => formatDate(row.created_at),
     },
     {
@@ -76,7 +73,7 @@ export default function UserTable({ users, onPageChange }) {
                     to={users.to}
                     total={users.total}
                     onPageChange={onPageChange}
-                    label="usuarios"
+                    itemLabel="usuarios"
                 />
             </div>
         </div>
