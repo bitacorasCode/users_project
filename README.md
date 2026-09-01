@@ -63,13 +63,13 @@ psql --version
 ## 1. Clone the Repository
 
 ```bash
-git clone <REPOSITORY_URL>
+git clone https://github.com/bitacorasCode/users_project
 ```
 
 Move into the project directory:
 
 ```bash
-cd <PROJECT_NAME>
+cd users_project
 ```
 
 ---
@@ -106,6 +106,8 @@ copy .env.example .env
 
 ---
 
+Then change the `DB_USERNAME` and `DB_PASSWORD` for a valid PostgreSQL user configured on the machine.
+
 ## 5. Generate the Laravel Application Key
 
 ```bash
@@ -114,62 +116,19 @@ php artisan key:generate
 
 ---
 
-# PostgreSQL Setup
-
-Start PostgreSQL
-
-Before creating the database, make sure the PostgreSQL service is running.
-
-Create a PostgreSQL database for the application.
-
-For example:
-
-```sql
-CREATE DATABASE users_project;
-```
-
-You can create the database using `psql`, pgAdmin, or any other PostgreSQL client.
-
-Example using `psql`:
-
-```bash
-psql -U postgres
-```
-
-Then:
-
-```sql
-CREATE DATABASE users_project;
-```
-
-Exit PostgreSQL:
-
-```sql
-\q
-```
-
----
-
-# Environment Configuration
-
-Edit the database configuration in `.env`:
-
-```env
-DB_CONNECTION=pgsql
-DB_HOST=127.0.0.1
-DB_PORT=5432
-DB_DATABASE=users_project
-DB_USERNAME=you_user
-DB_PASSWORD=your_password
-```
-
-`DB_USERNAME` and `DB_PASSWORD` must match a valid PostgreSQL user configured on the machine.
-
 After modifying the `.env` file, clear Laravel's cached configuration:
 
 ```bash
 php artisan config:clear
 ```
+
+---
+
+# PostgreSQL
+
+Start PostgreSQL
+
+Before continue, make sure the PostgreSQL service is running.
 
 ---
 
@@ -181,7 +140,9 @@ Run the database migrations and seeders:
 php artisan migrate --seed
 ```
 
-This creates the required tables and initial data, such as the roles used by the application.
+This will ask you if you want to create the database, put yes
+
+This creates the required database, tables and initial data, such as the roles used by the application.
 
 ---
 
